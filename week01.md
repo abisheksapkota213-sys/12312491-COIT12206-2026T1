@@ -49,6 +49,7 @@ iface eth0 inet static
 	netmask 255.255.255.0
 up sysctl net ipv4 in_forward
  
+<img width="902" height="198" alt="image" src="https://github.com/user-attachments/assets/e8be13d4-b5a6-40b2-9928-073ee3101ce1" />
 
 For host 2 all commands are same but the ip address is 10.10.0.12
 
@@ -57,14 +58,17 @@ Host 1 	10.10.0.11	255.255.255.0
 Host 2 	10.10.0.12	255.255.255.0
 
 
- 
- 
+ <img width="678" height="323" alt="image" src="https://github.com/user-attachments/assets/b72a7b54-071a-4335-97a4-5b38575b5319" />
+
+ <img width="647" height="338" alt="image" src="https://github.com/user-attachments/assets/44b0e15e-1a77-47b8-baa1-902e131a8b7f" />
+
 
 
 vi.	Start nodes
 vii.	Web console was opened for each host to intract with the Linux terminal
 viii.	Verify IP Address by simply using command ‘ ip address show’
- 
+ <img width="940" height="572" alt="image" src="https://github.com/user-attachments/assets/0b57fa93-239a-4122-bc92-ce64807cbe08" />
+
 ix.	To test connectivity the ‘ping’ command was used.
 
 
@@ -86,11 +90,3 @@ The labs provided students the opportunity to learn about configuration and veri
 
 
 
-
-
-
-	
-
-
-
-<img width="1383" height="685" alt="Screenshot 2026-03-15 171834" src="https://github.com/user-attachments/assets/9205645c-cb0d-4bf5-b0bf-98cb48ed6de3" />
