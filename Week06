@@ -1,0 +1,49 @@
+Week 06 Tutorial
+
+Task 1: Resolving IP Addresses to Hardware Addresses 
+Aim 
+See how ARP allows devices to keep track of mapping from IP addresses to hardware addresses in a LAN. 
+Tasks 1:
+1.	
+
+  In this network diagram, Host 1, Host 2, … Host 4 are connected to a switch. All hosts are in a single network, so we can easily communicate from any host to any of the others with just normal configuration on the hosts.
+ 
+2.	View the ARP table of Host A (in other words, show the IP neighbours). To show IP neighbours (ARP table), I used the ip neigh show command before and after pinging Host 2 from Host 1. After pinging, it shows the required result.  
+3.	Ping from Host A to Host B. Here we are able to ping Host 2 from Host 3, which proves that the configuration of every host is done correctly. 
+4.	Again, view the ARP table of Host A. After pinging Host 3 from Host 1, we look at the ARP table once again to see neighbour hosts. As shown in the picture below, we can see there are two hosts (i.e., Host 2 and Host 3) after pinging both from Host 1. 
+Ping from Host C to Host A, and again view the ARP table of Host A to understand what has changed. Here we can see there is not much difference in the logic; it shows the connection of Host 1 to Host 3 after pinging and showing the ARP table. 
+
+Description:
+A network with four hosts connected to a switch that are all on the same subnet will allow for direct communication between all four hosts. When the ARP table on Host 1 is first checked (with the command ip neigh show), it shows little to no entries because there has not been any communication yet between Host 1 and Hosts 2, 3, or 4. After Host 1 pings Host 2 and then checks the ARP table again, it contains a new entry with the IP and MAC address of Host 2. After Host 1 pings Host 3 and checks the ARP table again, there are now entries for the IP and MAC address of Hosts 2 and 3. Finally, when Host 3 pings Host 1 and the ARP table on Host 1 is checked again, it will show that the mappings were already learned and no significant changes to the ARP table occurred.
+
+
+Task 2: Default Gateways 
+Aim 
+Use default gateways to enable static routing 
+Tasks 
+To begin, the "/etc/network/interfaces" config file was updated on each device so that IP addresses would be assigned to each via subnet mask. All host devices would also have a default gateway assigned to them, with the IP address of the Gateway being on the same subnet masks of the respective device. This will allow for hosts sending traffic to other networks by using their router. 
+
+The next thing to do is configure IP forwarding depending on whether the device is a host or a router. A router needs to have forwarding enabled in order for it to route traffic between different networks. Where hosts do not need forwarding to be activated, therefore will not route traffic. 
+Once all devices were configured, they were either restarted completely or networking services restarted in order to apply the configuration changes and allow for proper functioning of the device.
+ 
+Once devices were powered up, all devices were verified for their routing tables to confirm that they had correct routes and default gateways present, which confirmed that the device would know how to reach other networks.
+Host 1:
+ 
+Host 3:
+ 
+
+If deemed necessary, any additional routes that required adding were done manually on the routing table for proper routing connectivity between the different subnets. This procedure is performed only if the default gateway is not sufficient in order to have proper communication between subnets. 
+
+Lastly, once routing has been confirmed to be correctly working between the devices on different subnets, we will verify that communication has been established successfully between both devices and routing is working.
+Description:
+The network will be created from an existing project or a new project. A network topology contains two Linux hosts that are connected directly to a router by way of a switch in one subnet and 2 more Linux hosts that are connected by way of a second switch to a second router in the second subnet; A third subnet is created by directly connecting the two routers. This network will consist of 4 hosts, 2 switches and 2 routers, connector through 3 subnets.
+All devices were configured using their respective /etc/network/interfaces files; All devices were assigned an IP Address and Subnet Mask, Default Gateways were set on all hosts. IP forwarding was enabled of both routers and disabled on all hosts to ensure proper routing has occurred. After completing the configuration for all devices, all devices were powered on.
+After all devices have powered on, the routing tables of all devices were displayed using the command 'ip route show' to ensure the proper routing has occurred. The output from each routing table indicates that each host has a default gateway, routers are aware of connected networks. The final test to verify connectivity was performed using the 'ping' command by sending a packet from a host in one subnet to a host in a different subnet. The successful ping indicated that the default gateways and routing configurations are functioning properly.
+
+
+Conclusion 
+In this lab, we learned about the uses of ARP and default gateways and how they are used for communications over a network. The implementation of ARP is dynamic and allows the automatic mapping of an IP address to its corresponding MAC address over a local area network; as hosts on the local area network communicate, the ARP table is updated. The use of a default gateway allows routers to enable communication between subnets; through proper configuration of IP address and routing settings, it is possible to route and forward packets from one subnet to another. Communication was verified between subnets and within subnets through ping testing.
+
+Reflection
+
+Through completing this lab, my understanding of the operation of networks was greatly enhanced. The ARP protocol illustrated how a device on a local area network discovers the MAC address of another device; the default gateway illustrated how routers provide communication between two devices on different subnets. Additionally, using the ip neigh show and ip route show to test connectivity and confirm the proper functioning configuration have given me greater practical understanding of networking and how data is transmitted in real-world applications. Overall, my practical networking skills were greatly improved by the completion of this lab and my understanding of data communication improved as a result.
