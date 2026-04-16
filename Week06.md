@@ -3,15 +3,25 @@ Week 06 Tutorial
 Task 1: Resolving IP Addresses to Hardware Addresses 
 Aim 
 See how ARP allows devices to keep track of mapping from IP addresses to hardware addresses in a LAN. 
-Tasks 1:
 1.	
+<img width="940" height="795" alt="image" src="https://github.com/user-attachments/assets/2eb13ba7-ef51-41a8-a5d5-6fb6ec59e028" />
+
 
   In this network diagram, Host 1, Host 2, … Host 4 are connected to a switch. All hosts are in a single network, so we can easily communicate from any host to any of the others with just normal configuration on the hosts.
  
-2.	View the ARP table of Host A (in other words, show the IP neighbours). To show IP neighbours (ARP table), I used the ip neigh show command before and after pinging Host 2 from Host 1. After pinging, it shows the required result.  
+2.	View the ARP table of Host A (in other words, show the IP neighbours). To show IP neighbours (ARP table), I used the ip neigh show command before and after pinging Host 2 from Host 1. After pinging, it shows the required result.
+<img width="940" height="310" alt="image" src="https://github.com/user-attachments/assets/f80df93b-50c6-4562-9d1e-6b6cb2802813" />
+
 3.	Ping from Host A to Host B. Here we are able to ping Host 2 from Host 3, which proves that the configuration of every host is done correctly. 
+<img width="805" height="258" alt="image" src="https://github.com/user-attachments/assets/0a89c1aa-5c43-4cfd-9347-7ec11a73d6fb" />
+
 4.	Again, view the ARP table of Host A. After pinging Host 3 from Host 1, we look at the ARP table once again to see neighbour hosts. As shown in the picture below, we can see there are two hosts (i.e., Host 2 and Host 3) after pinging both from Host 1. 
+<img width="940" height="81" alt="image" src="https://github.com/user-attachments/assets/897df810-0c9e-4940-ba20-584864d3170e" />
+
 Ping from Host C to Host A, and again view the ARP table of Host A to understand what has changed. Here we can see there is not much difference in the logic; it shows the connection of Host 1 to Host 3 after pinging and showing the ARP table. 
+
+<img width="940" height="624" alt="image" src="https://github.com/user-attachments/assets/b28b7b19-4cef-45b5-ac55-0b73889b9ac8" />
+
 
 Description:
 A network with four hosts connected to a switch that are all on the same subnet will allow for direct communication between all four hosts. When the ARP table on Host 1 is first checked (with the command ip neigh show), it shows little to no entries because there has not been any communication yet between Host 1 and Hosts 2, 3, or 4. After Host 1 pings Host 2 and then checks the ARP table again, it contains a new entry with the IP and MAC address of Host 2. After Host 1 pings Host 3 and checks the ARP table again, there are now entries for the IP and MAC address of Hosts 2 and 3. Finally, when Host 3 pings Host 1 and the ARP table on Host 1 is checked again, it will show that the mappings were already learned and no significant changes to the ARP table occurred.
@@ -22,17 +32,25 @@ Aim
 Use default gateways to enable static routing 
 Tasks 
 To begin, the "/etc/network/interfaces" config file was updated on each device so that IP addresses would be assigned to each via subnet mask. All host devices would also have a default gateway assigned to them, with the IP address of the Gateway being on the same subnet masks of the respective device. This will allow for hosts sending traffic to other networks by using their router. 
+<img width="940" height="522" alt="image" src="https://github.com/user-attachments/assets/3494e5e2-3ad7-4b26-b9ec-5900389e78b9" />
+
 
 The next thing to do is configure IP forwarding depending on whether the device is a host or a router. A router needs to have forwarding enabled in order for it to route traffic between different networks. Where hosts do not need forwarding to be activated, therefore will not route traffic. 
 Once all devices were configured, they were either restarted completely or networking services restarted in order to apply the configuration changes and allow for proper functioning of the device.
  
 Once devices were powered up, all devices were verified for their routing tables to confirm that they had correct routes and default gateways present, which confirmed that the device would know how to reach other networks.
 Host 1:
- 
+<img width="669" height="134" alt="image" src="https://github.com/user-attachments/assets/ccb6bf31-1413-497b-a565-2c4b18cb47cd" />
+
+
+
 Host 3:
- 
+ <img width="799" height="183" alt="image" src="https://github.com/user-attachments/assets/989dd5f8-5c46-41eb-a3f2-dffe81a75ad4" />
+
 
 If deemed necessary, any additional routes that required adding were done manually on the routing table for proper routing connectivity between the different subnets. This procedure is performed only if the default gateway is not sufficient in order to have proper communication between subnets. 
+<img width="850" height="342" alt="image" src="https://github.com/user-attachments/assets/7b94ce14-6d09-4f9c-b8e6-53a326def6ca" />
+
 
 Lastly, once routing has been confirmed to be correctly working between the devices on different subnets, we will verify that communication has been established successfully between both devices and routing is working.
 Description:
